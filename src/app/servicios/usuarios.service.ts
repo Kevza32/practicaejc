@@ -5,17 +5,40 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'; //sirve para hac
 })
 export class UsuariosService {
   private url = "./assets/jsons/jsonUsuarios.json";
+  private url2 = "http://190.146.64.16/coperdev/jsserver";
   private headers;
   private options;
 
   constructor(private http: HttpClient) {
- 
-    // this.options = { headers: this.headers }
+    this.headers = new HttpHeaders({
+        'Content-Type': 'application/x-www-form-urlencoded' //propiedad de httpClient para poder enviar json por la cabeceras
+      });
+    this.options = { headers: this.headers }
   }
 
   cargarTodosLosUsuarios() {
     return this.http.get(this.url);
   }
+
+  LoguearApi(form){
+    const json = {
+      "ServiceName": "SiwepService",
+      "MethodHash": "com.siwep.bean.account.SesionTrabajo_validateSesionTrabajo_String_String_String_String_String_String",
+      "ArgumentList": [
+        form.authType,
+        form.username,
+        form.password,
+        null,
+        null,
+        null
+      ]
+    }
+    const data  = JSON.stringify(json);
+    return this.http.post(this.url2,data,this.options); 
+  }
+
+
+
 }
 
 

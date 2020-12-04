@@ -11,9 +11,12 @@ export class LoginComponent implements OnInit {
 
 
   usuario = {
-    user: "",
-    psw: ""
+    authType: 'ldap',
+    username: '',
+    password: ''
   }
+
+  
   constructor(private usuarioService: UsuariosService) {
   }
   ngOnInit(): void {
@@ -23,28 +26,42 @@ export class LoginComponent implements OnInit {
 
 
   enviar() {
-    this.usuarioService.cargarTodosLosUsuarios().subscribe(
-      (resp: any) => {
-        if (resp.length > 0) {
-          console.log("Trajo los valores");
-          this.usuarios = resp;
-          this.validarUsuario();
-        } else {
-          console.log("hibo un error con el servicio");
+    this.usuarioService.LoguearApi(this.usuario).subscribe(
+      (resp:any)=>{
+        let empleado = resp.DataBeanProperties.ObjectValue 
+        if(empleado.DataBeanProperties.Empleado != null ){
+          let usuarioE = resp.DataBeanProperties.ObjectValue.DataBeanProperties.Empleado.DataBeanProperties;
+          
+          alert(`Bienvenido ${usuarioE.NOMBRES}`);
+        }else{
+          alert("No se encontro el usuario");
         }
       }
     );
+
+
+    // this.usuarioService.cargarTodosLosUsuarios().subscribe(
+    //   (resp: any) => {
+    //     if (resp.length > 0) {
+    //       console.log("Trajo los valores");
+    //       this.usuarios = resp;
+    //       this.validarUsuario();
+    //     } else {
+    //       console.log("hibo un error con el servicio");
+    //     }
+    //   }
+    // );
   }
-  validarUsuario() {
-    this.usuarios.forEach(element => {
-      if (element.usuario == this.usuario.user && element.contrasena == this.usuario.psw) {
-        alert(`
-        usuario encontrado ${element.nombre} 
-        usuario: ${element.usuario} 
-        contraseña ${element.contrasena}`);
-      }
-    });
-  }
+  // private validarUsuario() {
+  //   this.usuarios.forEach(element => {
+  //     if (element.usuario == this.usuario.user && element.contrasena == this.usuario.psw) {
+  //       alert(`
+  //       usuario encontrado ${element.nombre} 
+  //       usuario: ${element.usuario} 
+  //       contraseña ${element.contrasena}`);
+  //     }
+  //   });
+  // }
   }
 
 
