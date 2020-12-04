@@ -1,0 +1,21 @@
+[
+    {
+      "usuario": "paloma1",
+      "contrasena": "1234567",
+      "nombre": "Paloma"
+    },
+    {
+      "usuario": "germanP",
+      "contrasena": "222222",
+      "nombre": "German Paez"
+    },
+    {
+      "usuario": "Alejo21",
+      "contrasena": "555555",
+      "nombre": "Alejandro Alvarez"
+    },{
+      "usuario": "Monica",
+      "contrasena": "11222",
+      "nombre": "Monica Rodriguez"
+    }
+  ]

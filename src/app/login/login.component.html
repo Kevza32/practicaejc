@@ -1,0 +1,30 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+
+        </div>
+        <div class="col-md-6">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="usuario.user" [ngModelOptions]="{standalone: true}">
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" [(ngModel)]="usuario.psw" [ngModelOptions]="{standalone: true}">
+                </div>
+                <div class="row">
+                    <div class="col text-center">
+                        <button class="btn btn-primary" (click)="enviar()">Enviar</button>
+                    </div>
+                </div>
+        </div>
+        <div class="col-md-3 ">
+            <p>usuario: {{usuario.user}}</p>
+            <br>
+            <p>password: {{usuario.psw}}</p>
+
+        </div>
+    </div>
+    
+</div>
