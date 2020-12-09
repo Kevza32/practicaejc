@@ -14,16 +14,15 @@ export class LoginComponent implements OnInit {
 
   usuario = {
     authType: 'ldap',
-    username: '',
-    password: ''
+    username: 'ldapadministrator',
+    password: '1005422373'
   }
 
 
   constructor(private usuarioService: UsuariosService, private _router: Router, private _SlocalStorage:SeviceLocalStorageService) {
   }
   ngOnInit(): void {
-    localStorage.setItem("SesionUser", '');
-
+   this._SlocalStorage.clearToken()
   }
 
   usuarios: any = [];

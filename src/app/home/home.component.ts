@@ -16,5 +16,6 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.sesion =  this._SlocalStorage.getJsonValue('SesionUser')
     console.log(this.sesion);
+    
   }
 }
