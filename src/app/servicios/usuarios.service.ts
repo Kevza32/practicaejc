@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'; //sirve para hacer peticiones http (get post put delete)
+import { ServicioEncriptService } from './servicio-encript.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -9,10 +10,10 @@ export class UsuariosService {
   private headers;
   private options;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private serviceEncript: ServicioEncriptService) {
     this.headers = new HttpHeaders({
-        'Content-Type': 'application/x-www-form-urlencoded' //propiedad de httpClient para poder enviar json por la cabeceras
-      });
+      'Content-Type': 'application/x-www-form-urlencoded' //propiedad de httpClient para poder enviar json por la cabeceras
+    });
     this.options = { headers: this.headers }
   }
 
@@ -20,53 +21,21 @@ export class UsuariosService {
     return this.http.get(this.url);
   }
 
-  LoguearApi(form){
+  LoguearApi(user: any) {
     const json = {
       "ServiceName": "SiwepService",
       "MethodHash": "com.siwep.bean.account.SesionTrabajo_validateSesionTrabajo_String_String_String_String_String_String",
       "ArgumentList": [
-        form.authType,
-        form.username,
-        form.password,
+        user.authType,
+        user.username,
+        user.password,
         null,
         null,
         null
       ]
     }
-    const data  = JSON.stringify(json);
-    return this.http.post(this.url2,data,this.options); 
+    const data = JSON.stringify(json);
+    return this.http.post(this.url2, data, this.options);
   }
 
-
-
 }
-
-
-
-
-
-
-
-
-  //private url2 = "http://190.146.64.16/coperdev/jsserver"; 
-  // this.headers = new HttpHeaders({
-  //   'Content-Type': 'application/x-www-form-urlencoded' //propiedad de httpClient para poder enviar json por la cabeceras
-  // });
-  // this.options = { headers: this.headers }
-  // loguin(bean){
-  //   const dataObj = {
-  //     "ServiceName":"SiwepService",
-  //     "MethodHash":"com.siwep.bean.account.SesionTrabajo_validateSesionTrabajo_String_String_String_String_String_String",
-  //     "ArgumentList":[
-  //         bean.authType,
-  //         bean.username,
-  //         bean.password,
-  //         bean.hostname,
-  //         bean.ipAddress,
-  //         bean.macAddress
-  //     ]
-  //   };
-  //   const data = JSON.stringify(dataObj);
-  //   console.log(data);
-  //   return this.http.post(this.url2, data);
-  // }

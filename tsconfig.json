@@ -16,5 +16,13 @@
       "es2018",
       "dom"
     ]
+  },
+  "angularCompilerOptions": {
+    "types": [
+      "node"
+    ],
+    "typeRoots": [
+      "node_modules/@types"
+    ]
   }
 }
