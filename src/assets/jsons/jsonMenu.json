@@ -9,5 +9,8 @@
     }, {
         "nombre": "Inicio",
         "ruta": "/home"
+    },{
+        "nombre": "Buscar unidad",
+        "ruta": "/buscarUnidad"
     }
 ]

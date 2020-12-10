@@ -12,6 +12,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { DeInteresComponent } from './de-interes/de-interes.component';
 import { NoticiasComponent } from './noticias/noticias.component';
 import { NavbarLateralComponent } from './navbar-lateral/navbar-lateral.component';
+import { BuscadorUnidadComponent } from './buscador-unidad/buscador-unidad.component';
 
 
 
@@ -23,7 +24,8 @@ import { NavbarLateralComponent } from './navbar-lateral/navbar-lateral.componen
     NavbarComponent,
     DeInteresComponent,
     NoticiasComponent,
-    NavbarLateralComponent
+    NavbarLateralComponent,
+    BuscadorUnidadComponent
   ],
   imports: [
     BrowserModule,
