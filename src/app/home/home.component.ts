@@ -9,6 +9,7 @@ import { SeviceLocalStorageService } from '../servicios/sevice-local-storage.ser
 })
 export class HomeComponent implements OnInit {
   sesion:any;
+  vista=1;
   constructor(private _SlocalStorage: SeviceLocalStorageService) {
 
   }
@@ -17,5 +18,8 @@ export class HomeComponent implements OnInit {
     this.sesion =  this._SlocalStorage.getJsonValue('SesionUser')
     console.log(this.sesion);
     
+  }
+  clicknav(id){
+    this.vista = id 
   }
 }

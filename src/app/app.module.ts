@@ -8,6 +8,9 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // sirve para definir formularios en angular // reactive par formularios reactivos
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { DeInteresComponent } from './de-interes/de-interes.component';
+import { NoticiasComponent } from './noticias/noticias.component';
 
 
 
@@ -15,7 +18,10 @@ import { HomeComponent } from './home/home.component';
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    NavbarComponent,
+    DeInteresComponent,
+    NoticiasComponent
   ],
   imports: [
     BrowserModule,
