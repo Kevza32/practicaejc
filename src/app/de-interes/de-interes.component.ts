@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SeviceLocalStorageService } from '../servicios/sevice-local-storage.service';
 
 @Component({
   selector: 'app-de-interes',
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./de-interes.component.css']
 })
 export class DeInteresComponent implements OnInit {
-
-  constructor() { }
+  sesion:any;
+  constructor(private servicioLS : SeviceLocalStorageService) { }
 
   ngOnInit(): void {
+  this.sesion=this.servicioLS.getJsonValue('SesionUser');
   }
 
 }

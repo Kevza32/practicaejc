@@ -10,16 +10,23 @@ import { SeviceLocalStorageService } from '../servicios/sevice-local-storage.ser
 export class HomeComponent implements OnInit {
   sesion:any;
   vista=1;
+  disabledButton: boolean = true;
   constructor(private _SlocalStorage: SeviceLocalStorageService) {
 
   }
 
   ngOnInit(): void {
-    this.sesion =  this._SlocalStorage.getJsonValue('SesionUser')
+    this.sesion =  this._SlocalStorage.getJsonValue('SesionUser');
     console.log(this.sesion);
     
   }
   clicknav(id){
-    this.vista = id 
+    this.vista = id
+    if (this.vista == 2){
+      this.disabledButton = false;
+    }else{
+      this.disabledButton = true;
+
+    }
   }
 }

@@ -1,0 +1,13 @@
+[
+    {
+        "nombre": "De interes",
+        "ruta": "/de-interes"
+    },
+    {
+        "nombre": "Noticias",
+        "ruta": "/noticias"
+    }, {
+        "nombre": "Inicio",
+        "ruta": "/home"
+    }
+]

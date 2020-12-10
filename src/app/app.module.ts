@@ -11,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { DeInteresComponent } from './de-interes/de-interes.component';
 import { NoticiasComponent } from './noticias/noticias.component';
+import { NavbarLateralComponent } from './navbar-lateral/navbar-lateral.component';
 
 
 
@@ -21,7 +22,8 @@ import { NoticiasComponent } from './noticias/noticias.component';
     HomeComponent,
     NavbarComponent,
     DeInteresComponent,
-    NoticiasComponent
+    NoticiasComponent,
+    NavbarLateralComponent
   ],
   imports: [
     BrowserModule,

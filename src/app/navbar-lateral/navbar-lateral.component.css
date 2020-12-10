@@ -1,0 +1,8 @@
+.menuL {
+    height: calc(100vh - 48px);
+}
+.active{
+    color: red;
+    font-weight:bold;
+    font-style: italic;
+}
