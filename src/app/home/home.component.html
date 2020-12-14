@@ -5,7 +5,7 @@
       <app-navbar-lateral></app-navbar-lateral>
     </div>
     <div class="col-md-9">
-      <div class="container" *ngIf="vista==1">
+      <div class="container mb-5" *ngIf="vista==1">
         <p>Cedula: {{sesion.IDENTIFICACION}}</p>
         <p>Nombres: {{sesion.NOMBRES}} {{sesion.APELLIDOS}}</p>
         <p>Fecha de nacimiento: {{sesion.FECHA_NACIMIENTO.slice(0,10)}}</p>
@@ -14,37 +14,36 @@
 
       </div>
 
-      <div class="container">
-        <table>
+      <div class="container mb-5">
+        <table class="table table-striped">
           <thead>
             <tr>
               <th>ID</th>
               <th>Mensaje</th>
+              <th>acciones</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let item of listaMensajes">
               <td>{{item.DataBeanProperties.IDMensajes}}</td>
               <td>{{item.DataBeanProperties.Mensajes}}</td>
+              <td>
+                <button type="button" class="btn btn-danger btn-sm m-1" (click)="eliminarMensaje(item.DataBeanProperties)">Eliminar</button>
+                <button type="button" class="btn btn-warning btn-sm m-1" (click)="editar(item.DataBeanProperties)">Editar</button>
+
+              </td>
             </tr>
           </tbody>
         </table>
       </div>
-      <!-- <div class="container">
+      <div class="container">
         <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Mensaje</label>
-          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          <label for="txtMensaje" class="form-label">Mensaje</label>
+          <textarea type="text" class="form-control" id="txtMensaje" [(ngModel)]="beanMensaje.Mensajes"> </textarea>
         </div>
-        <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label">Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1">
-        </div>
-        <div class="mb-3 form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1">
-          <label class="form-check-label" for="exampleCheck1">Check me out</label>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </div> -->
+        <button *ngIf="beanMensaje.IDMensajes==null" type="submit" class="btn btn-primary" (click)="guardarMensaje()">Guardar</button>
+        <button *ngIf="beanMensaje.IDMensajes!=null" type="submit" class="btn btn-primary" (click)="guardarMensaje()">Editar</button>
+      </div>
     </div>
   </div>
 </div>

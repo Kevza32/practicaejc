@@ -9,44 +9,84 @@ import { SeviceLocalStorageService } from '../servicios/sevice-local-storage.ser
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  sesion:any;
-  vista=1;
+  sesion: any;
+  vista = 1;
   disabledButton: boolean = true;
   listaMensajes = [];
 
-  beanMensaje={
-    IDMensaje: null,
+  beanMensaje = {
+    IDMensajes: null,
     Mensajes: '',
-    IDFuncionario: 0 
+    IDFuncionario: 0
   }
   constructor(private _SlocalStorage: SeviceLocalStorageService, private mensajeService: ServiceMensajesService) {
 
   }
 
   ngOnInit(): void {
-    this.sesion =  this._SlocalStorage.getJsonValue('SesionUser');
+    this.sesion = this._SlocalStorage.getJsonValue('SesionUser');
     console.log(this.sesion);
-    this.beanMensaje.IDFuncionario = this.sesion.CONSECUTIVO; 
+    this.beanMensaje.IDFuncionario = this.sesion.CONSECUTIVO;
     this.listaServiciosxFuncionario();
   }
-  clicknav(id){
+  clicknav(id) {
     this.vista = id
-    if (this.vista == 2){
+    if (this.vista == 2) {
       this.disabledButton = false;
-    }else{
+    } else {
       this.disabledButton = true;
     }
   }
 
-  public listaServiciosxFuncionario(){
+  public listaServiciosxFuncionario() {
     this.mensajeService.consultarTodosMensajes(this.sesion.CONSECUTIVO).subscribe(
-      (resp:any)=>{
-        if(resp.DataBeanProperties.ObjectValue){
+      (resp: any) => {
+        if (resp.DataBeanProperties.ObjectValue) {
           this.listaMensajes = resp.DataBeanProperties.ObjectValue;
-        }else{
+        } else {
           alert("El usuario no tiene mensajes");
         }
       }
     );
+  }
+  public guardarMensaje() {
+    this.mensajeService.crearMensaje(this.beanMensaje).subscribe(
+      (resp: any) => {
+        if (resp.DataBeanProperties.ObjectValue) {
+          this.beanMensaje.IDMensajes == null ? alert("Se creo el mensaje") : alert("Se edito el mensaje");
+          this.listaServiciosxFuncionario();
+          this.beanMensaje = {
+            IDMensajes: null,
+            Mensajes: '',
+            IDFuncionario: 0
+          }
+        } else {
+          alert("No se pudo crear el mensaje");
+        }
+      }
+    );
+  }
+  public eliminarMensaje(beanM) {
+    this.beanMensaje = beanM;
+    this.mensajeService.eliminarMensaje(this.beanMensaje).subscribe(
+      (resp: any) => {
+        if (resp.DataBeanProperties.ObjectValue) {
+          alert("El mensaje se elimino correctamente");
+          this.listaServiciosxFuncionario();
+          this.beanMensaje = {
+            IDMensajes: null,
+            Mensajes: '',
+            IDFuncionario: 0
+          }
+        } else {
+          alert("El mensaje no se pudo eliminar");
+        }
+      }
+    );
+  }
+  public editar(bean){
+    this.beanMensaje = bean;
+    console.log(this.beanMensaje);
+    
   }
 }
