@@ -22,11 +22,19 @@ export class HomeComponent implements OnInit {
   constructor(private _SlocalStorage: SeviceLocalStorageService, private mensajeService: ServiceMensajesService) {
 
   }
+  inicializarBean (){
+    this.beanMensaje = {
+      IDMensajes: null,
+      Mensajes: '',
+      IDFuncionario: this.sesion.CONSECUTIVO
+    }
+  }
 
   ngOnInit(): void {
     this.sesion = this._SlocalStorage.getJsonValue('SesionUser');
     console.log(this.sesion);
-    this.beanMensaje.IDFuncionario = this.sesion.CONSECUTIVO;
+    // this.beanMensaje.IDFuncionario = this.sesion.CONSECUTIVO;
+    this.inicializarBean();
     this.listaServiciosxFuncionario();
   }
   clicknav(id) {
@@ -50,16 +58,16 @@ export class HomeComponent implements OnInit {
     );
   }
   public guardarMensaje() {
+    console.log(this.beanMensaje);
+
     this.mensajeService.crearMensaje(this.beanMensaje).subscribe(
       (resp: any) => {
         if (resp.DataBeanProperties.ObjectValue) {
           this.beanMensaje.IDMensajes == null ? alert("Se creo el mensaje") : alert("Se edito el mensaje");
           this.listaServiciosxFuncionario();
-          this.beanMensaje = {
-            IDMensajes: null,
-            Mensajes: '',
-            IDFuncionario: 0
-          }
+          this.inicializarBean();
+          console.log(this.beanMensaje);
+          
         } else {
           alert("No se pudo crear el mensaje");
         }
@@ -73,11 +81,7 @@ export class HomeComponent implements OnInit {
         if (resp.DataBeanProperties.ObjectValue) {
           alert("El mensaje se elimino correctamente");
           this.listaServiciosxFuncionario();
-          this.beanMensaje = {
-            IDMensajes: null,
-            Mensajes: '',
-            IDFuncionario: 0
-          }
+          this.inicializarBean();
         } else {
           alert("El mensaje no se pudo eliminar");
         }
